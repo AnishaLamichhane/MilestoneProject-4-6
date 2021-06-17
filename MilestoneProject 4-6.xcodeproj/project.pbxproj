@@ -13,6 +13,7 @@
 		AF304D2B267B469A00AEB39D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AF304D2A267B469A00AEB39D /* Assets.xcassets */; };
 		AF304D2E267B469A00AEB39D /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AF304D2D267B469A00AEB39D /* Preview Assets.xcassets */; };
 		AF304D31267B469A00AEB39D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AF304D2F267B469A00AEB39D /* LaunchScreen.storyboard */; };
+		AF304D39267B54BD00AEB39D /* MultiplicationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF304D38267B54BD00AEB39D /* MultiplicationView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +25,7 @@
 		AF304D2D267B469A00AEB39D /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		AF304D30267B469A00AEB39D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		AF304D32267B469A00AEB39D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		AF304D38267B54BD00AEB39D /* MultiplicationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultiplicationView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -59,6 +61,7 @@
 				AF304D24267B469700AEB39D /* AppDelegate.swift */,
 				AF304D26267B469700AEB39D /* SceneDelegate.swift */,
 				AF304D28267B469700AEB39D /* ContentView.swift */,
+				AF304D38267B54BD00AEB39D /* MultiplicationView.swift */,
 				AF304D2A267B469A00AEB39D /* Assets.xcassets */,
 				AF304D2F267B469A00AEB39D /* LaunchScreen.storyboard */,
 				AF304D32267B469A00AEB39D /* Info.plist */,
@@ -145,6 +148,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AF304D39267B54BD00AEB39D /* MultiplicationView.swift in Sources */,
 				AF304D25267B469700AEB39D /* AppDelegate.swift in Sources */,
 				AF304D27267B469700AEB39D /* SceneDelegate.swift in Sources */,
 				AF304D29267B469700AEB39D /* ContentView.swift in Sources */,
