@@ -12,6 +12,9 @@ struct MultiplicationView: View {
     @Binding var number1: Int
     @Binding var steps: Int
     @State private var answer = ""
+    @State private var score = 0
+    
+    @State private var showingAlert = false
     var number2 = Int.random(in: 1...10)
     
     @State private var showingAgain = false
@@ -24,7 +27,7 @@ struct MultiplicationView: View {
                 Text("\(self.number1)  *  \(self.number2) = ??")
                     .font(.title)
                 
-                TextField("    Answer:", text: $answer)
+                TextField("   Answer:", text: $answer)
                     .foregroundColor(.white)
                     
                     .frame(height:44)
@@ -33,27 +36,31 @@ struct MultiplicationView: View {
                     .cornerRadius(10)
                                 
                 
-                Button(showingAgain ? "Next" : "Submit") {
+                Button(showingAlert ? "Submit" : "Next") {
                     self.steps -= 1
-                   if self.steps < 1 {
-                        self.showingAgain = false
-                   
-                    } else {
-                      self.showingAgain = true
+                    showingAgain = true
+                    
+                    while(steps < 1) {
+                        showingAgain = false
+                        showingAlert = true
                         
                     }
-                    
-                }
+               }
                 
             }
             .padding([.leading, .trailing])
         }
         .navigationBarTitle("hello Kids", displayMode: .inline)
+        .alert(isPresented: $showingAlert) {
+            Alert(title: Text("Result!"), message: Text( "Your score is \(score)"), dismissButton: .default(Text("Okay")))
+        }
         .background(
             NavigationLink(destination: MultiplicationView(number1: $number1, steps: $steps), isActive: $showingAgain) {
                 
             }
         )
+        
+        
         
     }
     
