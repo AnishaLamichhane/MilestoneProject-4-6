@@ -8,11 +8,11 @@
 import SwiftUI
 
 struct ContentView: View {
-//    let items = Array(1...9).map({"\($0)"})
-    @State private var showingSheet = false
+
+    @State private var showingView = false
 
     @State var number1 = 0
-    @State var keepRecord = 0
+//    @State var keepRecord = 0
     @State var steps = 5
     
     let layout = [
@@ -24,38 +24,47 @@ struct ContentView: View {
         var body: some View {
             NavigationView {
                 ScrollView(.vertical) {
-                    VStack {
-                        LazyVGrid(columns: layout, spacing: 5) {
-                            ForEach(1...9, id: \.self) { item in
-                                VStack(alignment: .center) {
-                                    Text("Multiple")
-                                    Text("of")
-                                    Text("\(item)")
-                                    .font(.title)
+                    VStack(spacing: 20) {
+                        Section {
+                            Text("Test your Multiplication skills.")
+                                .fontWeight(.bold)
+                                .foregroundColor(.green)
+                                .font(.title2)
+                        }
+                        
+                        Section {
+                            LazyVGrid(columns: layout, spacing: 5) {
+                                ForEach(1...9, id: \.self) { item in
+                                    VStack(alignment: .center) {
+                                        Text("Multiple")
+                                        Text("of")
+                                        Text("\(item)")
+                                        .font(.title)
+                                        
+                                        
+                                    }
+                                    .frame(width: 90, height: 80, alignment: .center)
+                                    .foregroundColor(.white)
+                                    .background(getRandomColor())
+                                    .border(Color.secondary)
+                                    .cornerRadius(12)
+        //                            .padding()
+                                   .onTapGesture {
+                                        self.number1 = item
+                                    }
                                     
-                                    
-                                }
-                                .frame(width: 90, height: 80, alignment: .center)
-                                .foregroundColor(.white)
-                                .background(getRandomColor())
-                                .border(Color.secondary)
-                                .cornerRadius(12)
-    //                            .padding()
-                                .onAppear{
-                                    self.keepRecord = item
-                                }
+                                 }
                                 
-                             }
-                            .onTapGesture {
-                                self.number1 = keepRecord
                             }
                         }
                         
-                        .padding(.bottom)
-                        Stepper("Enter the no of steps: \(steps)", value: $steps, in: 0...10)
-                            .padding([.bottom, .top])
+                        
+                        Section {
+                            Stepper("Enter the no of steps: \(steps)", value: $steps, in: 0...10)
+                        }
+                           
                         Button(action: {
-                            self.showingSheet.toggle()
+                            self.showingView = true
                         }, label: {
                             Text("Start Test")
                         })
@@ -65,17 +74,18 @@ struct ContentView: View {
                         .border(Color.secondary)
                         .clipShape(Capsule())
                         
-                        .sheet(isPresented: $showingSheet) {
-                            MultiplicationView(number1: $number1, steps: $steps)
-                        }
-                        
                     }
                     
                     .padding([.all])
                    
                     
                 }
-                .navigationBarTitle("Wanna Try Multiplication", displayMode: .inline)
+                .navigationBarTitle("Multiplication Quiz", displayMode: .inline)
+                .background(
+                    NavigationLink(destination: MultiplicationView(number1: $number1, steps: $steps), isActive: $showingView) {
+                    
+                    }
+                )
             }
             
         }
