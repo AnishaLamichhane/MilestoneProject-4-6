@@ -8,17 +8,21 @@
 import SwiftUI
 
 struct MultiplicationView: View {
-    let number1: Int
-    init(number1: Int) {
-        self.number1 = number1
-    }
+    @Binding var number1: Int
+    @Binding var steps: Int
+    var number2 = Int.random(in: 1...20)
+    
     var body: some View {
-        Text("\(number1)")
+        VStack(alignment: .center) {
+            Text("Find the answer")
+            Text("\(self.number1) * \(self.number2) = ??")
+        }
+        
     }
 }
 
-struct MultiplicationView_Previews: PreviewProvider {
-    static var previews: some View {
-        MultiplicationView(number1: 2)
-    }
-}
+//struct MultiplicationView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        MultiplicationView(number1: <#Binding<Int>#>, steps: <#Binding<Int>#>)
+//    }
+//}
