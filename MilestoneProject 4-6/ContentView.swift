@@ -10,6 +10,7 @@ import SwiftUI
 struct ContentView: View {
 
     @State private var showingView = false
+    
 
     @State var number1 = 0
 //    @State var keepRecord = 0
@@ -89,6 +90,7 @@ struct ContentView: View {
             }
             
         }
+
     func getRandomColor() -> Color{
          let randomRed = CGFloat.random(in: 0...1)
         let randomGreen = CGFloat.random(in: 0...0.9)

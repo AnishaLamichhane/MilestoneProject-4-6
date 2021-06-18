@@ -15,17 +15,20 @@ struct MultiplicationView: View {
     @State private var score = 0
     
     @State private var showingAlert = false
-    var number2 = Int.random(in: 1...10)
+    @State private var number2 = Int.random(in: 1...10)
     
-    @State private var showingAgain = false
+    @State var trackNum2 = 0
     
     var body: some View {
         NavigationView {
             VStack(alignment: .center, spacing: 20) {
               
                 Text("Find the answer")
-                Text("\(self.number1)  *  \(self.number2) = ??")
-                    .font(.title)
+                
+                withAnimation{
+                    Text("\(self.number1)  *  \(self.number2) = ??")
+                        .font(.title)
+                }
                 
                 TextField("   Answer:", text: $answer)
                     .foregroundColor(.white)
@@ -34,35 +37,48 @@ struct MultiplicationView: View {
                     .accentColor(Color.white)
                     .background(Color.secondary)
                     .cornerRadius(10)
-                                
+                    
                 
                 Button(showingAlert ? "Submit" : "Next") {
                     self.steps -= 1
-                    showingAgain = true
+                    self.trackNum2 = number2
+                    self.checkAnswer(num1: number1, num2: number2, answer: answer)
+                    print("\(answer) \(number1) \(trackNum2)")
                     
-                    while(steps < 1) {
-                        showingAgain = false
-                        showingAlert = true
-                        
+                    if steps < 1 {
+                        self.showingAlert = true
                     }
-               }
+                    
+              }
+            
+                
                 
             }
+            
             .padding([.leading, .trailing])
         }
         .navigationBarTitle("hello Kids", displayMode: .inline)
+        
         .alert(isPresented: $showingAlert) {
             Alert(title: Text("Result!"), message: Text( "Your score is \(score)"), dismissButton: .default(Text("Okay")))
         }
-        .background(
-            NavigationLink(destination: MultiplicationView(number1: $number1, steps: $steps), isActive: $showingAgain) {
-                
+   }
+    func checkAnswer(num1: Int, num2: Int, answer: String){
+        let solution = num1 * num2
+        if let answer = Int(answer) {
+            if (answer == solution) {
+                self.score += 5
+               
             }
-        )
-        
-        
+        }
+        number2 = Int.random(in: 1...10)
+        print("\(score)")
+    }
+    
+     func askQuestions() {
         
     }
+    
     
 }
 
